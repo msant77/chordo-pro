@@ -193,21 +193,6 @@
       text-decoration: none;
     }
 
-    .hero__badge {
-      display: inline-block;
-      background: transparent;
-      color: var(--blue);
-      border: 1px solid var(--blue);
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      vertical-align: super;
-      margin-left: 0.4rem;
-    }
-
     /* --- ICLF Preview --- */
     .preview {
       padding: 3rem 0;
@@ -423,12 +408,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .hero__icon, .hero__wordmark, .hero__tagline, .hero__badge, .hero__downloads, .hero__dl-note {
+    .hero__icon, .hero__wordmark, .hero__tagline, .hero__downloads, .hero__dl-note {
       animation: fadeUp 0.6s ease both;
     }
     .hero__wordmark { animation-delay: 0.1s; }
     .hero__tagline { animation-delay: 0.2s; }
-    .hero__badge { animation-delay: 0.3s; }
     .hero__downloads { animation-delay: 0.4s; }
     .hero__dl-note { animation-delay: 0.5s; }
 
@@ -678,7 +662,7 @@
         <path d="M584 240 C 584 240, 720 290, 720 400 C 720 480, 620 530, 584 460" fill="#2196F3"/>
       </svg>
     </div>
-    <h1 class="hero__wordmark">Chordo Pro<span class="hero__badge" data-i18n="beta_badge">Beta</span></h1>
+    <h1 class="hero__wordmark">Chordo Pro</h1>
     <p class="hero__tagline" data-i18n="tagline">The chord sheet companion for musicians who value privacy and simplicity.</p>
     <div class="hero__downloads">
       <a href="https://github.com/msant77/chordo-pro/releases/latest/download/chordo-macos.zip" class="hero__dl-btn hero__dl-btn--primary">
@@ -736,7 +720,7 @@
         </div>
         <div class="carousel__slide">
           <div class="carousel__frame"><img src="screenshots/mac/08_import_light.png" alt="Import" loading="lazy"></div>
-          <div class="carousel__caption" data-i18n="cap_8">Import from ChordPro, Ultimate Guitar, and more</div>
+          <div class="carousel__caption" data-i18n="cap_8">Import from any chord sheet format</div>
         </div>
         <div class="carousel__slide">
           <div class="carousel__frame"><img src="screenshots/mac/09_editor_dark.png" alt="Editor" loading="lazy"></div>
@@ -784,7 +768,7 @@
         <div class="feature">
           <div class="feature__icon">📖</div>
           <h3 class="feature__title" data-i18n="f2_title">Import Anything</h3>
-          <p class="feature__desc" data-i18n="f2_desc">ChordPro, inline brackets, Ultimate Guitar — import chord sheets from any major format into clean ICLF.</p>
+          <p class="feature__desc" data-i18n="f2_desc">Parentheses, inline brackets, chords-over-lyrics — import chord sheets from any major format into clean ICLF.</p>
         </div>
 
         <div class="feature">
@@ -878,10 +862,6 @@
         de: 'Der Akkordblatt-Begleiter für Musiker, die Datenschutz und Einfachheit schätzen.',
         it: 'Il compagno di spartiti per musicisti che apprezzano la privacy e la semplicità.'
       },
-      beta_badge: {
-        en: 'Beta', pt: 'Beta', es: 'Beta',
-        fr: 'Bêta', de: 'Beta', it: 'Beta'
-      },
       dl_macos: {
         en: 'macOS', pt: 'macOS', es: 'macOS',
         fr: 'macOS', de: 'macOS', it: 'macOS'
@@ -919,12 +899,12 @@
         fr: 'Importez Tout', de: 'Alles Importieren', it: 'Importa Tutto'
       },
       f2_desc: {
-        en: 'ChordPro, inline brackets, Ultimate Guitar — import chord sheets from any major format into clean ICLF.',
-        pt: 'ChordPro, colchetes inline, Ultimate Guitar — importe cifras de qualquer formato popular para ICLF limpo.',
-        es: 'ChordPro, corchetes inline, Ultimate Guitar — importa cifrados de cualquier formato popular a ICLF limpio.',
-        fr: 'ChordPro, crochets inline, Ultimate Guitar — importez des grilles depuis tout format majeur en ICLF propre.',
-        de: 'ChordPro, Inline-Klammern, Ultimate Guitar — importieren Sie Akkordblätter aus jedem gängigen Format in sauberes ICLF.',
-        it: 'ChordPro, parentesi inline, Ultimate Guitar — importa spartiti da qualsiasi formato popolare in ICLF pulito.'
+        en: 'Parentheses, inline brackets, chords-over-lyrics — import chord sheets from any major format into clean ICLF.',
+        pt: 'Parênteses, colchetes inline, acordes sobre letras — importe cifras de qualquer formato popular para ICLF limpo.',
+        es: 'Paréntesis, corchetes inline, acordes sobre letras — importa cifrados de cualquier formato popular a ICLF limpio.',
+        fr: 'Parenthèses, crochets inline, accords au-dessus des paroles — importez des grilles depuis tout format majeur en ICLF propre.',
+        de: 'Klammern, Inline-Klammern, Akkorde über Text — importieren Sie Akkordblätter aus jedem gängigen Format in sauberes ICLF.',
+        it: 'Parentesi, parentesi inline, accordi sopra il testo — importa spartiti da qualsiasi formato popolare in ICLF pulito.'
       },
       f3_title: {
         en: 'Chord Dictionary', pt: 'Dicionário de Acordes', es: 'Diccionario de Acordes',
@@ -1059,9 +1039,9 @@
         de: 'Wählen Sie Ihr Instrument und Ihre Stimmung', it: 'Scegli il tuo strumento e la tua accordatura'
       },
       cap_8: {
-        en: 'Import from ChordPro, Ultimate Guitar, and more', pt: 'Importe de ChordPro, Ultimate Guitar e mais',
-        es: 'Importa desde ChordPro, Ultimate Guitar y más', fr: 'Importez depuis ChordPro, Ultimate Guitar et plus',
-        de: 'Importieren Sie von ChordPro, Ultimate Guitar und mehr', it: 'Importa da ChordPro, Ultimate Guitar e altro'
+        en: 'Import from any chord sheet format', pt: 'Importe de qualquer formato de cifra',
+        es: 'Importa desde cualquier formato de cifrado', fr: 'Importez depuis n\'importe quel format',
+        de: 'Importieren Sie aus jedem Akkordblatt-Format', it: 'Importa da qualsiasi formato di spartito'
       },
       cap_9: {
         en: 'Built-in editor with live preview', pt: 'Editor integrado com visualização ao vivo',
