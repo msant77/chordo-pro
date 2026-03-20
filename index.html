@@ -85,7 +85,12 @@
     /* --- Hero --- */
     .hero {
       text-align: center;
-      padding: 6rem 1.5rem 4rem;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -202,14 +207,6 @@
 
     [data-theme="light"] .hero__store-badge-svg rect {
       fill: #000;
-    }
-
-    .hero__dl-note--apple {
-      margin-top: 0.75rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 400;
     }
 
     .hero__dl-note {
@@ -438,15 +435,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .hero__icon, .hero__wordmark, .hero__tagline, .hero__store-badges, .hero__downloads, .hero__dl-note, .hero__dl-note--apple {
+    .hero__icon, .hero__wordmark, .hero__tagline, .hero__store-badges, .hero__downloads, .hero__dl-note {
       animation: fadeUp 0.6s ease both;
     }
     .hero__wordmark { animation-delay: 0.1s; }
     .hero__tagline { animation-delay: 0.2s; }
     .hero__store-badges { animation-delay: 0.3s; }
-    .hero__dl-note--apple { animation-delay: 0.35s; }
-    .hero__downloads { animation-delay: 0.4s; }
-    .hero__dl-note { animation-delay: 0.5s; }
+    .hero__downloads { animation-delay: 0.35s; }
+    .hero__dl-note { animation-delay: 0.4s; }
 
     /* --- Light mode overrides --- */
     [data-theme="light"] .icon-bg { fill: #FFFFFF; }
@@ -557,8 +553,6 @@
     .carousel__track::-webkit-scrollbar { display: none; }
 
     .carousel__slide {
-      flex: 0 0 88%;
-      max-width: 1280px;
       scroll-snap-align: center;
     }
 
@@ -652,11 +646,112 @@
 
     /* Responsive */
     @media (max-width: 640px) {
-      .carousel__slide { flex: 0 0 94%; }
-      .carousel__track { padding: 0.5rem 3% 1rem; gap: 0.75rem; }
+      .carousel__track { gap: 0.75rem; }
       .carousel__btn { width: 36px; height: 36px; font-size: 1.1rem; }
       .carousel__btn--prev { left: 0.25rem; }
       .carousel__btn--next { right: 0.25rem; }
+    }
+
+    /* --- Parallax Divider --- */
+    .parallax-divider {
+      position: relative;
+      height: 100px;
+      overflow: hidden;
+      margin-top: -1px;
+    }
+
+    .parallax-divider__wave {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 100%;
+      animation: drift 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to { transform: translateX(-25%); }
+    }
+
+    /* --- Device Filter --- */
+    .device-filter-wrap {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .device-filter {
+      display: inline-flex;
+      gap: 0.2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.25rem;
+    }
+
+    .device-filter__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.25s;
+      font-family: var(--font);
+    }
+
+    .device-filter__btn:hover {
+      color: var(--text);
+    }
+
+    .device-filter__btn.active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .device-filter__btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* --- Carousel device-proportional sizing --- */
+    .carousel[data-device="mac"] .carousel__slide {
+      flex: 0 0 88%;
+      max-width: 1280px;
+    }
+
+    .carousel[data-device="ipad"] .carousel__slide {
+      flex: 0 0 42%;
+      max-width: 580px;
+    }
+
+    .carousel[data-device="iphone"] .carousel__slide {
+      flex: 0 0 26%;
+      max-width: 360px;
+    }
+
+    .carousel[data-device="ipad"] .carousel__track,
+    .carousel[data-device="iphone"] .carousel__track {
+      padding: 0.5rem 2rem 1rem;
+    }
+
+    .carousel .carousel__slide {
+      transition: flex 0.4s ease;
+    }
+
+    @media (max-width: 640px) {
+      .carousel[data-device="mac"] .carousel__slide { flex: 0 0 94%; }
+      .carousel[data-device="ipad"] .carousel__slide { flex: 0 0 72%; max-width: none; }
+      .carousel[data-device="iphone"] .carousel__slide { flex: 0 0 52%; max-width: none; }
+      .carousel[data-device="ipad"] .carousel__track,
+      .carousel[data-device="iphone"] .carousel__track {
+        padding: 0.5rem 3% 1rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -718,7 +813,6 @@
         </svg>
       </a>
     </div>
-    <p class="hero__dl-note hero__dl-note--apple" data-i18n="dl_apple_note">Available for iPhone, iPad, and Mac</p>
     <div class="hero__downloads">
       <a href="https://github.com/msant77/chordo-pro/releases/latest/download/chordo-windows-setup.exe" class="hero__dl-btn hero__dl-btn--secondary">
         <svg viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.25V12H3zm0 .5h8v6.5l-8-1.25V12.5zM11.5 12V5.35l9.5-1.6V12H11.5zm0 .5H21v7.75l-9.5-1.6V12.5z"/></svg>
@@ -732,49 +826,69 @@
     <p class="hero__dl-note" data-i18n="dl_note"><a href="https://github.com/msant77/chordo-pro/releases">Downloadable release versions</a></p>
   </section>
 
+  <!-- ===== PARALLAX DIVIDER ===== -->
+  <div class="parallax-divider">
+    <svg class="parallax-divider__wave" viewBox="0 0 2880 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1440,80 1800,0 2160,40 C2520,80 2880,0 2880,40 L2880,80 L0,80 Z" fill="var(--blue)" opacity="0.08"/>
+      <path d="M0,55 C360,25 720,70 1080,45 C1440,15 1800,65 2160,40 C2520,15 2880,60 2880,45 L2880,80 L0,80 Z" fill="var(--blue)" opacity="0.04"/>
+    </svg>
+  </div>
+
   <!-- ===== SCREENSHOTS ===== -->
   <section class="screenshots">
-    <div class="container">
-      <h2 class="screenshots__title" data-i18n="ss_title">See It in Action</h2>
-      <p class="screenshots__subtitle" data-i18n="ss_subtitle">Built for musicians. Designed for focus.</p>
+    <div class="device-filter-wrap">
+      <div class="device-filter" id="deviceFilter">
+        <button class="device-filter__btn" data-device="iphone">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm5 18a1 1 0 100-2 1 1 0 000 2zm-3-16h6"/></svg>
+          iPhone
+        </button>
+        <button class="device-filter__btn" data-device="ipad">
+          <svg viewBox="0 0 24 24"><path d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm6 18a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          iPad
+        </button>
+        <button class="device-filter__btn active" data-device="mac">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm5 15h8m-4 0v-2"/></svg>
+          Mac
+        </button>
+      </div>
     </div>
-    <div class="carousel" id="carousel">
+    <div class="carousel" id="carousel" data-device="mac">
       <button class="carousel__btn carousel__btn--prev" aria-label="Previous">&lsaquo;</button>
       <div class="carousel__track" id="carouselTrack">
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/01_song_list_light.png" alt="Song library" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/01_song_list_light.png" data-src-iphone="screenshots/iphone/01_song_list_light.png" data-src-ipad="screenshots/ipad/01_song_list_light.png" data-src-mac="screenshots/mac/01_song_list_light.png" alt="Song library" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_1">Your song library, organized and searchable</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/02_viewer_nochord_light.png" alt="Song viewer — light" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/02_viewer_nochord_light.png" data-src-iphone="screenshots/iphone/02_viewer_nochord_light.png" data-src-ipad="screenshots/ipad/02_viewer_nochord_light.png" data-src-mac="screenshots/mac/02_viewer_nochord_light.png" alt="Song viewer — light" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_2">Clean chord sheet viewer with lyrics alignment</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/03_viewer_nochord_dark.png" alt="Song viewer — dark" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/03_viewer_nochord_dark.png" data-src-iphone="screenshots/iphone/03_viewer_nochord_dark.png" data-src-ipad="screenshots/ipad/03_viewer_nochord_dark.png" data-src-mac="screenshots/mac/03_viewer_nochord_dark.png" alt="Song viewer — dark" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_3">Dark mode for late-night practice sessions</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/04_player_dark.png" alt="Practice mode" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/04_player_dark.png" data-src-iphone="screenshots/iphone/04_player_dark.png" data-src-ipad="screenshots/ipad/04_player_dark.png" data-src-mac="screenshots/mac/04_player_dark.png" alt="Practice mode" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_4">Practice mode with auto-scroll and tempo control</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/05_viewer_chord_light.png" alt="Chord panel" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/05_viewer_chord_light.png" data-src-iphone="screenshots/iphone/05_viewer_chord_light.png" data-src-ipad="screenshots/ipad/05_viewer_chord_light.png" data-src-mac="screenshots/mac/05_viewer_chord_light.png" alt="Chord panel" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_5">Tap any chord to see its voicing on your instrument</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/06_settings_light.png" alt="Settings" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/06_settings_light.png" data-src-iphone="screenshots/iphone/06_settings_light.png" data-src-ipad="screenshots/ipad/06_settings_light.png" data-src-mac="screenshots/mac/06_settings_light.png" alt="Settings" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_6">Fine-tune every detail to your preference</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/07_instrument_setup_dark.png" alt="Instrument setup" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/07_instrument_setup_dark.png" data-src-iphone="screenshots/iphone/07_instrument_setup_dark.png" data-src-ipad="screenshots/ipad/07_instrument_setup_dark.png" data-src-mac="screenshots/mac/07_instrument_setup_dark.png" alt="Instrument setup" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_7">Choose your instrument and tuning</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/08_import_light.png" alt="Import" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/08_import_light.png" data-src-iphone="screenshots/iphone/08_import_light.png" data-src-ipad="screenshots/ipad/08_import_light.png" data-src-mac="screenshots/mac/08_import_light.png" alt="Import" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_8">Import from any chord sheet format</div>
         </div>
         <div class="carousel__slide">
-          <div class="carousel__frame"><img src="screenshots/mac/09_editor_dark.png" alt="Editor" loading="lazy"></div>
+          <div class="carousel__frame"><img src="screenshots/mac/09_editor_dark.png" data-src-iphone="screenshots/iphone/09_editor_dark.png" data-src-ipad="screenshots/ipad/09_editor_dark.png" data-src-mac="screenshots/mac/09_editor_dark.png" alt="Editor" loading="lazy"></div>
           <div class="carousel__caption" data-i18n="cap_9">Built-in editor with live preview</div>
         </div>
       </div>
@@ -920,14 +1034,6 @@
       dl_linux: {
         en: 'Linux', pt: 'Linux', es: 'Linux',
         fr: 'Linux', de: 'Linux', it: 'Linux'
-      },
-      dl_apple_note: {
-        en: 'Available for iPhone, iPad, and Mac',
-        pt: 'Disponível para iPhone, iPad e Mac',
-        es: 'Disponible para iPhone, iPad y Mac',
-        fr: 'Disponible pour iPhone, iPad et Mac',
-        de: 'Verfügbar für iPhone, iPad und Mac',
-        it: 'Disponibile per iPhone, iPad e Mac'
       },
       dl_note: {
         en: '<a href="https://github.com/msant77/chordo-pro/releases">Downloadable release versions</a>',
@@ -1198,6 +1304,49 @@
         if (e.key === 'ArrowLeft') { prevBtn && prevBtn.click(); e.preventDefault(); }
         if (e.key === 'ArrowRight') { nextBtn && nextBtn.click(); e.preventDefault(); }
       });
+    })();
+
+    // Device filter — switches carousel screenshots and proportional sizing
+    (function () {
+      var filter = document.getElementById('deviceFilter');
+      var carousel = document.getElementById('carousel');
+      var track = document.getElementById('carouselTrack');
+      if (!filter || !carousel || !track) return;
+
+      var buttons = filter.querySelectorAll('.device-filter__btn');
+      var slides = track.querySelectorAll('.carousel__slide');
+
+      function switchDevice(device) {
+        // Update active button
+        buttons.forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-device') === device);
+        });
+
+        // Set carousel device for proportional sizing
+        carousel.setAttribute('data-device', device);
+
+        // Switch image sources
+        slides.forEach(function (slide) {
+          var img = slide.querySelector('img');
+          if (!img) return;
+          var src = img.getAttribute('data-src-' + device);
+          if (src) img.src = src;
+        });
+
+        // Reset scroll to start
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+
+      filter.addEventListener('click', function (e) {
+        var btn = e.target.closest('.device-filter__btn');
+        if (!btn) return;
+        switchDevice(btn.getAttribute('data-device'));
+      });
+
+      // Auto-detect device from viewport
+      var w = window.innerWidth;
+      var detected = w < 768 ? 'iphone' : w < 1200 ? 'ipad' : 'mac';
+      switchDevice(detected);
     })();
   })();
   </script>
