@@ -190,13 +190,26 @@
       margin-top: 0.5rem;
     }
 
-    .hero__store-badge {
-      height: 44px;
+    .hero__store-badge-svg {
+      height: 48px;
+      width: auto;
       transition: transform 0.15s;
     }
 
-    .hero__store-badge:hover {
+    .hero__store-badge-svg:hover {
       transform: translateY(-1px);
+    }
+
+    [data-theme="light"] .hero__store-badge-svg rect {
+      fill: #000;
+    }
+
+    .hero__dl-note--apple {
+      margin-top: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
     }
 
     .hero__dl-note {
@@ -425,11 +438,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .hero__icon, .hero__wordmark, .hero__tagline, .hero__downloads, .hero__dl-note {
+    .hero__icon, .hero__wordmark, .hero__tagline, .hero__store-badges, .hero__downloads, .hero__dl-note, .hero__dl-note--apple {
       animation: fadeUp 0.6s ease both;
     }
     .hero__wordmark { animation-delay: 0.1s; }
     .hero__tagline { animation-delay: 0.2s; }
+    .hero__store-badges { animation-delay: 0.3s; }
+    .hero__dl-note--apple { animation-delay: 0.35s; }
     .hero__downloads { animation-delay: 0.4s; }
     .hero__dl-note { animation-delay: 0.5s; }
 
@@ -683,12 +698,27 @@
     <p class="hero__tagline" data-i18n="tagline">The chord sheet companion for musicians who value privacy and simplicity.</p>
     <div class="hero__store-badges">
       <a href="https://apps.apple.com/app/chordo-pro/id6760436297?platform=iphone" target="_blank" rel="noopener">
-        <img class="hero__store-badge" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+        <svg class="hero__store-badge-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="40" rx="6" fill="#000"/>
+          <g fill="#fff">
+            <path d="M24.77 20.3a4.95 4.95 0 012.36-4.15 5.07 5.07 0 00-3.99-2.16c-1.68-.18-3.31 1.01-4.17 1.01-.87 0-2.19-.99-3.62-.96a5.32 5.32 0 00-4.48 2.73c-1.93 3.34-.49 8.27 1.36 10.97.93 1.33 2.01 2.82 3.44 2.76 1.39-.06 1.92-.89 3.6-.89 1.67 0 2.15.89 3.61.86 1.49-.02 2.43-1.34 3.33-2.68a11.1 11.1 0 001.51-3.09 4.79 4.79 0 01-2.95-4.4zM22.04 12.21a4.87 4.87 0 001.12-3.5 4.96 4.96 0 00-3.21 1.66 4.64 4.64 0 00-1.15 3.36 4.1 4.1 0 003.24-1.52z"/>
+            <text x="36" y="15" font-family="-apple-system,system-ui,sans-serif" font-size="6" fill="#fff" letter-spacing="0.02em">Download on the</text>
+            <text x="36" y="27" font-family="-apple-system,system-ui,sans-serif" font-size="11" font-weight="600" fill="#fff">App Store</text>
+          </g>
+        </svg>
       </a>
       <a href="https://apps.apple.com/app/chordo-pro/id6760436297?platform=mac" target="_blank" rel="noopener">
-        <img class="hero__store-badge" src="https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83" alt="Download on the Mac App Store">
+        <svg class="hero__store-badge-svg" viewBox="0 0 156 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="156" height="40" rx="6" fill="#000"/>
+          <g fill="#fff">
+            <path d="M24.77 20.3a4.95 4.95 0 012.36-4.15 5.07 5.07 0 00-3.99-2.16c-1.68-.18-3.31 1.01-4.17 1.01-.87 0-2.19-.99-3.62-.96a5.32 5.32 0 00-4.48 2.73c-1.93 3.34-.49 8.27 1.36 10.97.93 1.33 2.01 2.82 3.44 2.76 1.39-.06 1.92-.89 3.6-.89 1.67 0 2.15.89 3.61.86 1.49-.02 2.43-1.34 3.33-2.68a11.1 11.1 0 001.51-3.09 4.79 4.79 0 01-2.95-4.4zM22.04 12.21a4.87 4.87 0 001.12-3.5 4.96 4.96 0 00-3.21 1.66 4.64 4.64 0 00-1.15 3.36 4.1 4.1 0 003.24-1.52z"/>
+            <text x="36" y="15" font-family="-apple-system,system-ui,sans-serif" font-size="6" fill="#fff" letter-spacing="0.02em">Download on the</text>
+            <text x="36" y="27" font-family="-apple-system,system-ui,sans-serif" font-size="11" font-weight="600" fill="#fff">Mac App Store</text>
+          </g>
+        </svg>
       </a>
     </div>
+    <p class="hero__dl-note hero__dl-note--apple" data-i18n="dl_apple_note">Available for iPhone, iPad, and Mac</p>
     <div class="hero__downloads">
       <a href="https://github.com/msant77/chordo-pro/releases/latest/download/chordo-windows-setup.exe" class="hero__dl-btn hero__dl-btn--secondary">
         <svg viewBox="0 0 24 24"><path d="M3 12V6.75l8-1.25V12H3zm0 .5h8v6.5l-8-1.25V12.5zM11.5 12V5.35l9.5-1.6V12H11.5zm0 .5H21v7.75l-9.5-1.6V12.5z"/></svg>
@@ -699,7 +729,7 @@
         <span data-i18n="dl_linux">Linux</span>
       </a>
     </div>
-    <p class="hero__dl-note" data-i18n="dl_note">Available on the App Store for iPhone, iPad, and Mac &middot; <a href="https://github.com/msant77/chordo-pro/releases">Windows &amp; Linux releases</a></p>
+    <p class="hero__dl-note" data-i18n="dl_note">Also available for <a href="https://github.com/msant77/chordo-pro/releases">Windows &amp; Linux</a></p>
   </section>
 
   <!-- ===== SCREENSHOTS ===== -->
@@ -891,13 +921,21 @@
         en: 'Linux', pt: 'Linux', es: 'Linux',
         fr: 'Linux', de: 'Linux', it: 'Linux'
       },
+      dl_apple_note: {
+        en: 'Available for iPhone, iPad, and Mac',
+        pt: 'Disponível para iPhone, iPad e Mac',
+        es: 'Disponible para iPhone, iPad y Mac',
+        fr: 'Disponible pour iPhone, iPad et Mac',
+        de: 'Verfügbar für iPhone, iPad und Mac',
+        it: 'Disponibile per iPhone, iPad e Mac'
+      },
       dl_note: {
-        en: 'Available on the App Store for iPhone, iPad, and Mac · <a href="https://github.com/msant77/chordo-pro/releases">Windows & Linux releases</a>',
-        pt: 'Disponível na App Store para iPhone, iPad e Mac · <a href="https://github.com/msant77/chordo-pro/releases">Versões para Windows e Linux</a>',
-        es: 'Disponible en la App Store para iPhone, iPad y Mac · <a href="https://github.com/msant77/chordo-pro/releases">Versiones para Windows y Linux</a>',
-        fr: 'Disponible sur l\'App Store pour iPhone, iPad et Mac · <a href="https://github.com/msant77/chordo-pro/releases">Versions Windows et Linux</a>',
-        de: 'Verfügbar im App Store für iPhone, iPad und Mac · <a href="https://github.com/msant77/chordo-pro/releases">Windows- & Linux-Versionen</a>',
-        it: 'Disponibile sull\'App Store per iPhone, iPad e Mac · <a href="https://github.com/msant77/chordo-pro/releases">Versioni per Windows e Linux</a>'
+        en: 'Also available for <a href="https://github.com/msant77/chordo-pro/releases">Windows & Linux</a>',
+        pt: 'Também disponível para <a href="https://github.com/msant77/chordo-pro/releases">Windows e Linux</a>',
+        es: 'También disponible para <a href="https://github.com/msant77/chordo-pro/releases">Windows y Linux</a>',
+        fr: 'Également disponible pour <a href="https://github.com/msant77/chordo-pro/releases">Windows et Linux</a>',
+        de: 'Auch verfügbar für <a href="https://github.com/msant77/chordo-pro/releases">Windows & Linux</a>',
+        it: 'Disponibile anche per <a href="https://github.com/msant77/chordo-pro/releases">Windows e Linux</a>'
       },
       f1_title: {
         en: 'Multi-Instrument', pt: 'Multi-Instrumento', es: 'Multi-Instrumento',
