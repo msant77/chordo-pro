@@ -221,10 +221,13 @@
     }
 
     .hero__platform svg {
-      width: 18px;
-      height: 18px;
       fill: currentColor;
     }
+
+    .hero__platform[data-platform="iphone"] svg { width: 14px; height: 22px; }
+    .hero__platform[data-platform="ipad"] svg { width: 20px; height: 24px; }
+    .hero__platform[data-platform="mac"] svg { width: 28px; height: 22px; }
+    .hero__platform[data-platform="none"] svg { width: 18px; height: 18px; }
 
     .hero__platform-badge {
       display: inline-flex;
@@ -764,7 +767,7 @@
     <h1 class="hero__wordmark">Chordo Pro</h1>
     <p class="hero__tagline" data-i18n="tagline">The chord sheet companion for musicians who value privacy and simplicity.</p>
     <div class="hero__platforms" id="platformSelector">
-      <button class="hero__platform active" data-platform="iphone" data-store="https://apps.apple.com/app/chordo-pro/id6760436297?platform=iphone">
+      <button class="hero__platform" data-platform="iphone" data-store="https://apps.apple.com/app/chordo-pro/id6760436297?platform=iphone">
         <svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm5 18a1 1 0 100-2 1 1 0 000 2zm-3-16h6"/></svg>
         iPhone
         <span class="hero__platform-badge">App Store</span>
@@ -788,7 +791,7 @@
         Linux
       </a>
     </div>
-    <div class="hero__store-link visible" id="storeLink">
+    <div class="hero__store-link" id="storeLink">
       <a href="https://apps.apple.com/app/chordo-pro/id6760436297?platform=iphone" target="_blank" rel="noopener" id="storeLinkAnchor">
         <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
         <span data-i18n="dl_get_store">Get it on the App Store</span>
@@ -1302,6 +1305,14 @@
         e.preventDefault();
         switchPlatform(platform, storeUrl);
       });
+
+      // Auto-detect platform based on viewport width
+      var w = window.innerWidth;
+      var detected = w < 768 ? 'iphone' : w < 1200 ? 'ipad' : 'mac';
+      var detectedBtn = selector.querySelector('[data-platform="' + detected + '"]');
+      if (detectedBtn) {
+        switchPlatform(detected, detectedBtn.getAttribute('data-store'));
+      }
     })();
   })();
   </script>
